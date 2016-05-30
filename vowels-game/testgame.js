@@ -36,8 +36,8 @@ GameState.prototype = {
         this.popSound = this.add.audio('pop');
 
         // check what letter we should start with
-        var index = localStorage['currentLowerCaseLetter'];
-        this.currentLetter = index ? this.LETTERS[parseInt(index)] : 'a'; 
+        var index = localStorage['currentVowel'];
+        this.currentLetter = index ? this.VOWELS[parseInt(index)] : 'a'; 
 
         this.balloonGroup = this.add.group();
 
@@ -139,12 +139,6 @@ GameState.prototype = {
         if (letter != this.currentLetter)
             return;
 
-        for (var i = 0.30; i <= 1; i += 0.05) {
-            console.log(i);
-            sprite.scale.setTo(i, i);
-        } 
-
-
         this.popSound.play();
         var x = sprite.x;
         var y = sprite.y;
@@ -161,7 +155,7 @@ GameState.prototype = {
             this.scoreNode.text = 0;
 
             // get the saved index, if it exists
-            var index = localStorage['currentLowerCaseLetter'];
+            var index = localStorage['currentVowel'];
             if (index) {
                 index = parseInt(index);
             }
@@ -170,14 +164,14 @@ GameState.prototype = {
             }
 
             // make progress if this is the letter we are learning about
-            if (this.LETTERS.indexOf(this.currentLetter) == index ) {
+            if (this.VOWELS.indexOf(this.currentLetter) == index ) {
 
                 this.letterNodes[index].fill = '#0f0';
                 index++;
                 this.letterNodes[index].fill = '#000';
 
-                this.currentLetter = this.LETTERS[index]; 
-                localStorage['currentLowerCaseLetter'] = index; 
+                this.currentLetter = this.VOWELS[index]; 
+                localStorage['currentVowel'] = index; 
             }
             else {
                 // if we were repeating a previously learned letter, go to the new 
