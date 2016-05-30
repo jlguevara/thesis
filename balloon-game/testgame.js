@@ -136,12 +136,6 @@ GameState.prototype = {
         if (letter != this.currentLetter)
             return;
 
-        for (var i = 0.30; i <= 1; i += 0.05) {
-            console.log(i);
-            sprite.scale.setTo(i, i);
-        } 
-
-
         this.popSound.play();
         var x = sprite.x;
         var y = sprite.y;
