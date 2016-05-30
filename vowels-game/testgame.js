@@ -176,7 +176,7 @@ GameState.prototype = {
             else {
                 // if we were repeating a previously learned letter, go to the new 
                 // letter to learn
-                this.currentLetter = this.LETTERS[index];
+                this.currentLetter = this.VOWELS[index];
             }
         }
 
