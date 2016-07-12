@@ -1,95 +1,116 @@
 GameState = function(game) {
-    this.NUMBER_OF_SHAPES = 3;
-    this.TOP_SCORE = 5;
+    this.LETTERS = 'abcdefghijklmnopqrstuvwxyz';
+    this.NUMBER_OF_LETTERS = 26;
+    
+    this.letterNodes = [];      // used to access the progress nodes
+
+    // new stuff
 };
 
 GameState.prototype = {
+    preload: function() {
+        // load images
+        game.load.image('background', 'images/' + settings.background + '.png');
+
+        for (var i = 0; i < settings.images.length; i++) {
+            var image = settings.images[i];
+            game.load.image(image, '/images/' + image + '.png');
+        }
+
+        game.load.image('popImage', '/images/' + settings.popImage + '.png');
+
+        // load sounds
+        game.load.audio('popSound', 'sounds/' + settings.popSound + '.mp3');
+        game.load.audio('winSound', 'sounds/' + settings.winSound + '.mp3');
+    },
+
     create: function() {
+        var background = game.add.image(0,0, 'background');
+        background.width = game.width;
+        background.height = game.height;
+
+        this.nextThingAt = 0;
+
+        this.popSound = this.add.audio('popSound');
+
         this.score = 0;
-        this.scoreNode = this.add.text(this.game.width / 2, 20,
-                "Score: " + this.score,
-                {font: '100px', fill: '#fff', align: 'center'}); 
-        this.scoreNode.anchor.setTo(0.5, 0.5);
+        this.scoreNode = this.add.text(20, 20, this.score,
+                {font: '30px KidsClub' , fill: '#fff', align: 'center'}); 
 
-        this.shapes = []
-        this.createShapes();
-        this.selectRandomShape();
 
     },
 
-    createShapes: function() {
-        var shapeNames = ["TRIANGLE", "RECTANGLE", "CIRCLE", "SQUARE"];
-        var height = this.game.height * 0.5;
+    update: function() {
+        if (this.nextThingAt < this.time.now) {
+            this.nextThingAt += settings.delay; 
 
-        var shapeNamesUsed = this.getRandomElements(shapeNames, 
-                this.NUMBER_OF_SHAPES);
+            /*
+            var balloonWidth = game.cache.getImage('balloon').width * 0.25;
+            var x = Math.floor(Math.random() * (game.width - balloonWidth) + 
+                    balloonWidth / 2) 
+            */
+            var x = Math.floor(Math.random() * game.width);
+            var y = game.height;
 
-        for (var i = 0; i < shapeNamesUsed.length; i++) {
-            var shape = this.add.text(this.game.width * 0.1 + i * 200, height, 
-                    shapeNamesUsed[i],
-                    {font: '50px', fill: '#fff', align: 'center'}); 
-            shape.inputEnabled = true;
-            shape.events.onInputDown.add(this.shapeClicked, this);
-            this.shapes.push(shape);
-        }
-    },
-
-    selectRandomShape: function() {
-        var index = Math.floor(Math.random() * this.shapes.length);
-        this.correctShape = this.shapes[index];
-
-        this.directions = this.add.text(this.game.width / 2, this.game.height * 0.3,
-                "Please click on the " + this.correctShape.text,
-                {font: '100px', fill: '#fff', align: 'center'}); 
-        this.directions.anchor.setTo(0.5, 0.5);
-    },
-
-    getRandomElements: function(array, n) {
-        sourceArray = array.slice(0);
-        var result = [];
-
-        for (var i = 0; i < n; i++) {
-            var index = Math.floor(Math.random() * sourceArray.length);
-            result.push(sourceArray[index]);
-            sourceArray.splice(index, 1);
-        }
-        return result;
-    },
-
-    shapeClicked: function(sprite, event) {
-        if (sprite == this.correctShape) {
-            this.score++;
-
-            if (this.score === this.TOP_SCORE) {
-                this.scoreNode.destroy();
-                this.directions.destroy();
-
-                while (this.shapes.length != 0) {
-                    this.shapes.pop().destroy();
-                }
-
-                this.add.text(this.game.width / 2, this.game.height / 2,
-                        "YOU WIN!",
-                        {font: '100px', fill: '#fff', align: 'center'}); 
-                return;
+            var imageToUse;
+            if (Math.random() <= settings.goalImageProbability) {      
+                imageToUse = settings.goalImage;
             }
-        }
-        else {
-            this.score = 0;
-        }
+            else {
+                var index = Math.floor(Math.random() * settings.images.length);
+                imageToUse = settings.images[index];
+            }
 
-        this.scoreNode.text = "Score: " + this.score;
-        this.directions.destroy();
-        while (this.shapes.length != 0) {
-            this.shapes.pop().destroy();
+            var sprite = game.add.sprite(x, y, imageToUse);
+            sprite.anchor.setTo(0.5, 0.5);
+            //balloon.scale.setTo(0.25, 0.25);
+
+            this.physics.enable(sprite, Phaser.Physics.ARCADE);
+            sprite.body.velocity.y = settings.velocity;
+
+            sprite.inputEnabled = true;
+            sprite.events.onInputDown.add(this.spriteClicked, this);
+
+            sprite.checkWorldBounds = true;
+            sprite.outOfBoundsKill = true;
         }
-        this.createShapes();
-        this.selectRandomShape();
 
     },
+
+    render: function() {
+        //this.game.debug.body(this.triangle);
+    },
+
+    spriteClicked: function(sprite, event) {
+        if (sprite.key != settings.goalImage)
+            return;
+
+        this.popSound.play();
+        var x = sprite.x;
+        var y = sprite.y;
+        var pop = this.add.sprite(x, y, 'popImage');
+        pop.scale.setTo(0.5, 0.5);
+        pop.anchor.setTo(0.5, 0.5);
+        pop.lifespan = settings.popLifeSpan;
+
+        this.score++;
+        this.scoreNode.text = this.score;
+
+        if (this.score == settings.goal) {
+            // handle win situation
+            this.add.text(game.width / 2, game.height / 2, settings.winMessage,
+                    {font: '30px KidsClub' , fill: '#fff', align: 'center'}); 
+
+            var winSound = this.add.audio('winSound');
+            winSound.play();
+        }
+
+        sprite.destroy();
+    },
+
 };
 
-var game = new Phaser.Game(640, 480, Phaser.AUTO);
+var game = new Phaser.Game(900, 480, Phaser.AUTO);
 
 game.state.add('GameState', GameState);
 game.state.start('GameState');
