@@ -1,9 +1,4 @@
 GameState = function(game) {
-    this.LETTERS = 'abcdefghijklmnopqrstuvwxyz';
-    this.NUMBER_OF_LETTERS = 26;
-    
-    this.letterNodes = [];      // used to access the progress nodes
-
     // new stuff
 };
 
