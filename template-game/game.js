@@ -5,18 +5,20 @@ GameState = function(game) {
 GameState.prototype = {
     preload: function() {
         // load images
-        game.load.image('background', 'images/' + settings.background + '.png');
+        var imagePath = 'images/' + settings.assetsDirectory + '/';
+        game.load.image('background', imagePath + settings.background + '.png');
 
         for (var i = 0; i < settings.images.length; i++) {
             var image = settings.images[i];
-            game.load.image(image, '/images/' + image + '.png');
+            game.load.image(image, imagePath + image + '.png');
         }
 
-        game.load.image('popImage', '/images/' + settings.popImage + '.png');
+        game.load.image('popImage', imagePath + settings.popImage + '.png');
 
         // load sounds
-        game.load.audio('popSound', 'sounds/' + settings.popSound + '.mp3');
-        game.load.audio('winSound', 'sounds/' + settings.winSound + '.mp3');
+        var soundsPath = 'sounds/' + settings.assetsDirectory + '/';
+        game.load.audio('popSound', soundsPath + settings.popSound + '.mp3');
+        game.load.audio('winSound', soundsPath + settings.winSound + '.mp3');
     },
 
     create: function() {

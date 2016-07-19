@@ -5,6 +5,8 @@
 var settings = {
     goal: 5,
 
+    assetsDirectory: 'balloon',
+
     background: 'deepblue',
 
     images: [   'balloonA', 
