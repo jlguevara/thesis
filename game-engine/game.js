@@ -107,7 +107,7 @@ GameState.prototype = {
 
 };
 
-var game = new Phaser.Game(900, 480, Phaser.AUTO);
+var game = new Phaser.Game(950, 525, Phaser.AUTO);
 
 game.state.add('GameState', GameState);
 game.state.start('GameState');
