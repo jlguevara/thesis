@@ -13,7 +13,7 @@ for (var i = 0; i < headElements.length; i++) {
 parameters = getParametersByName(document.location.href);
 
 var scriptTag = document.createElement('script');
-scriptTag.setAttribute('src', parameters['settings']);
+scriptTag.setAttribute('src', "settings/" + parameters['settings']);
 document.head.insertBefore(scriptTag, firstScriptElement.nextSibling);
 
 /*
