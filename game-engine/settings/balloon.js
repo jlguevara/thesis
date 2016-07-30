@@ -1,36 +1,32 @@
-/**
- * So far images are assumed to be png and sounds mp3
- */
+{
+    "goal" : 5,
 
-var settings = {
-    goal: 5,
+    "assetsDirectory" : "balloon",
 
-    assetsDirectory: 'balloon',
+    "background": "deepblue",
 
-    background: 'deepblue',
-
-    images: [   'balloonA', 
-                'balloonB', 
-                'balloonC', 
-                'balloonD', 
-                'balloonE'
+    "images": [   "balloonA", 
+                "balloonB", 
+                "balloonC", 
+                "balloonD", 
+                "balloonE"
     ],
 
-    goalImage: 'balloonA',
+    "goalImage": "balloonA",
 
-    goalImageProbability: 0.3,
+    "goalImageProbability": 0.3,
 
-    popImage : 'balloon-pop',
+    "popImage" : "balloon-pop",
 
-    popSound : 'pop',
+    "popSound" : "pop",
 
-    popLifeSpan: 800,
+    "popLifeSpan": 800,
 
-    delay : 1500,
+    "delay" : 1500,
 
-    velocity: -100,
+    "velocity": -100,
 
-    winMessage: 'You win!',
+    "winMessage": "You win!",
 
-    winSound : 'youWin',
+    "winSound" : "youWin"
 }

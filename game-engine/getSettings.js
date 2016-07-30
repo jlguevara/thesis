@@ -1,4 +1,27 @@
-// get reference to first script tag
+// setup variables to create an ajax request for the settings file
+var params = getParametersByName(document.location.href);
+var myLocation = document.location
+var protocol = location.protocol;
+var host = location.host;
+var pathname = location.pathname;
+var settingsFile = protocol + "//" + host + pathname + "settings/" + params['settings'];
+console.log(settingsFile);
+
+// variable that will hold settings object
+var settings = null;
+
+var request = new XMLHttpRequest();
+request.onreadystatechange = function() {
+    if (request.readyState == XMLHttpRequest.DONE && request.status == 200) {
+        console.log(request.responseText);
+        settings = JSON.parse(request.responseText);
+        console.log(settings);
+    }
+};
+request.open("GET", "http://localhost:8000/settings/balloon.js");
+request.send();
+
+/*
 
 var headElements = document.head.children;
 var firstScriptElement;
@@ -10,11 +33,12 @@ for (var i = 0; i < headElements.length; i++) {
     }
 }
 
-parameters = getParametersByName(document.location.href);
+var parameters = getParametersByName(document.location.href);
 
 var scriptTag = document.createElement('script');
 scriptTag.setAttribute('src', "settings/" + parameters['settings']);
 document.head.insertBefore(scriptTag, firstScriptElement.nextSibling);
+*/
 
 /*
  * get a map of the query string

@@ -38,6 +38,10 @@ GameState.prototype = {
     },
 
     update: function() {
+        if (this.score == settings.goal) {
+            return;
+        }
+
         if (this.nextThingAt < this.time.now) {
             this.nextThingAt += settings.delay; 
 
@@ -80,6 +84,9 @@ GameState.prototype = {
 
     spriteClicked: function(sprite, event) {
         if (sprite.key != settings.goalImage)
+            return;
+
+        if (this.score == settings.goal) 
             return;
 
         this.popSound.play();
