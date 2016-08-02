@@ -38,6 +38,7 @@ request.onreadystatechange = function() {
     if (request.readyState == XMLHttpRequest.DONE && request.status == 200) {
         console.log(request.responseText);
         settings = JSON.parse(request.responseText);
+        console.log(settings);
     }
 };
 request.open("GET", settingsFile); 

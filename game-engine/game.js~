@@ -38,6 +38,10 @@ GameState.prototype = {
     },
 
     update: function() {
+        if (this.score == settings.goal) {
+            return;
+        }
+
         if (this.nextThingAt < this.time.now) {
             this.nextThingAt += settings.delay; 
 
@@ -82,6 +86,9 @@ GameState.prototype = {
         if (sprite.key != settings.goalImage)
             return;
 
+        if (this.score == settings.goal) 
+            return;
+
         this.popSound.play();
         var x = sprite.x;
         var y = sprite.y;
@@ -107,7 +114,7 @@ GameState.prototype = {
 
 };
 
-var game = new Phaser.Game(900, 480, Phaser.AUTO);
+var game = new Phaser.Game(950, 525, Phaser.AUTO);
 
 game.state.add('GameState', GameState);
 game.state.start('GameState');

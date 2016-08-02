@@ -28,5 +28,5 @@
 
     "winMessage": "You win!",
 
-    "winSound" : "youWin"
+    "winSound" : "youWin",
 }

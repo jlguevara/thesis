@@ -1,0 +1,25 @@
+{
+    "assetsDirectory": "shapes", 
+    "background": "background", 
+    "delay": 1500, 
+    "goal": 5, 
+    "goalImage": "rectangle", 
+    "goalImageProbability": 0.4, 
+    "images": [
+        "arrow", 
+        "circle", 
+        "flippedSquare", 
+        "pentagon", 
+        "rectangle", 
+        "square", 
+        "star", 
+        "trapezoid", 
+        "triangle"
+    ], 
+    "popImage": "pop", 
+    "popLifeSpan": 800, 
+    "popSound": "pop", 
+    "velocity": -100, 
+    "winMessage": "You win!", 
+    "winSound": "win"
+}
