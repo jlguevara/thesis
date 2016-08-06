@@ -102,11 +102,6 @@ GameState.prototype = {
 
         this.score++;
         this.scoreNode.text = this.score;
-
-        x = game.width / 2;
-        y = game.height / 2;
-
-
     },
 
     spriteClicked: function(sprite, event) {
