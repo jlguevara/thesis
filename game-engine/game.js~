@@ -14,6 +14,7 @@ GameState.prototype = {
         }
 
         game.load.image('popImage', imagePath + settings.popImage + '.png');
+        game.load.image('rewardImage', imagePath + settings.rewardImage + '.png');
 
         // load sounds
         var soundsPath = 'sounds/' + settings.assetsDirectory + '/';
@@ -31,10 +32,10 @@ GameState.prototype = {
         this.popSound = this.add.audio('popSound');
 
         this.score = 0;
-        this.scoreNode = this.add.text(20, 20, this.score,
-                {font: '30px KidsClub' , fill: '#fff', align: 'center'}); 
 
-
+        this.rewardImageStep = 0.9 * game.cache.getImage('rewardImage').width; 
+        this.rewardImageX = game.cache.getImage('rewardImage').width / 2; 
+        this.rewardImageY = game.cache.getImage('rewardImage').height / 2; 
     },
 
     update: function() {
@@ -98,7 +99,14 @@ GameState.prototype = {
         pop.lifespan = settings.popLifeSpan;
 
         this.score++;
-        this.scoreNode.text = this.score;
+
+        var reward = game.add.image(x, y, 'rewardImage');
+        reward.anchor.setTo(0.5, 0.5);
+        reward.alpha = 0;
+        game.add.tween(reward).to( 
+                {x: this.rewardImageX, y: this.rewardImageY, alpha : 1}, 4000, null, 
+                true, settings.popLifespan + 1000);
+        this.rewardImageX += this.rewardImageStep;
 
         if (this.score == settings.goal) {
             // handle win situation

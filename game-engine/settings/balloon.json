@@ -15,6 +15,7 @@
     "popImage": "pop", 
     "popLifeSpan": 800, 
     "popSound": "pop", 
+    "rewardImage": "star",
     "velocity": -100, 
     "winMessage": "You win!", 
     "winSound": "win"
