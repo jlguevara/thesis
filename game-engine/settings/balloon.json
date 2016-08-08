@@ -1,8 +1,9 @@
 {
     "assetsDirectory": "balloon", 
     "background": "background", 
+    "backButton": "back",
     "delay": 1500, 
-    "goal": 5, 
+    "goal": 1, 
     "goalImage": "balloonC", 
     "goalImageProbability": 0.4, 
     "images": [
@@ -12,6 +13,7 @@
         "balloonD", 
         "balloonE"
     ], 
+    "playButton": "play",
     "popImage": "pop", 
     "popLifeSpan": 800, 
     "popSound": "pop", 

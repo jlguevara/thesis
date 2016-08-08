@@ -15,6 +15,8 @@ GameState.prototype = {
 
         game.load.image('popImage', imagePath + settings.popImage + '.png');
         game.load.image('rewardImage', imagePath + settings.rewardImage + '.png');
+        game.load.image('backButton', imagePath + settings.backButton + '.png');
+        game.load.image('playButton', imagePath + settings.playButton + '.png');
 
         // load sounds
         var soundsPath = 'sounds/' + settings.assetsDirectory + '/';
@@ -109,15 +111,45 @@ GameState.prototype = {
         this.rewardImageX += this.rewardImageStep;
 
         if (this.score == settings.goal) {
-            // handle win situation
-            this.add.text(game.width / 2, game.height / 2, settings.winMessage,
-                    {font: '30px KidsClub' , fill: '#fff', align: 'center'}); 
-
-            var winSound = this.add.audio('winSound');
-            winSound.play();
+            this.playerWon();
         }
 
         sprite.destroy();
+    },
+
+    playerWon: function() {
+        // handle win situation
+        /*
+        this.add.text(game.width / 2, game.height / 2, settings.winMessage,
+                {font: '30px KidsClub' , fill: '#fff', align: 'center'}); 
+        */
+
+        var winSound = this.add.audio('winSound');
+        winSound.play();
+
+        var backButton = game.add.image(0.35 * game.width,0.6 * game.height, 'backButton');
+        backButton.anchor.setTo(0.5, 0.5);
+        backButton.inputEnabled = true;
+        backButton.events.onInputOver.add(this.backButtonHover, this);
+        backButton.events.onInputDown.add(this.backButtonClicked, this);
+
+        var playButton = game.add.image(0.65 * game.width,0.6 * game.height, 'playButton');
+        playButton.anchor.setTo(0.5, 0.5);
+        playButton.inputEnabled = true;
+        playButton.events.onInputOver.add(this.playButtonHover, this);
+        playButton.events.onInputDown.add(this.playButtonClicked, this);
+    },
+
+    backButtonHover: function() {
+    },
+
+    backButtonClicked: function() {
+    },
+
+    playButtonHover: function() {
+    },
+
+    playButtonClicked: function() {
     },
 
 };
