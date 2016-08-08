@@ -130,26 +130,21 @@ GameState.prototype = {
         var backButton = game.add.image(0.35 * game.width,0.6 * game.height, 'backButton');
         backButton.anchor.setTo(0.5, 0.5);
         backButton.inputEnabled = true;
-        backButton.events.onInputOver.add(this.backButtonHover, this);
         backButton.events.onInputDown.add(this.backButtonClicked, this);
 
         var playButton = game.add.image(0.65 * game.width,0.6 * game.height, 'playButton');
         playButton.anchor.setTo(0.5, 0.5);
         playButton.inputEnabled = true;
-        playButton.events.onInputOver.add(this.playButtonHover, this);
         playButton.events.onInputDown.add(this.playButtonClicked, this);
     },
 
-    backButtonHover: function() {
-    },
-
     backButtonClicked: function() {
-    },
-
-    playButtonHover: function() {
+        console.log(location);
+        location = ".";
     },
 
     playButtonClicked: function() {
+        location = location;
     },
 
 };
