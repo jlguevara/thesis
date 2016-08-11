@@ -3,7 +3,7 @@
     "background": "background", 
     "delay": 1500, 
     "goal": 5, 
-    "goalImage": "rectangle", 
+    "goalImage": "trapezoid", 
     "goalImageProbability": 0.4, 
     "images": [
         "arrow", 

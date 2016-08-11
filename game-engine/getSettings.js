@@ -21,12 +21,17 @@ function getParametersByName(url) {
     return result;
 }
 
+function getPathName(path) {
+    var index = path.lastIndexOf("/");
+    return path.substring(0, index + 1);
+}
+
 // setup variables to create an ajax request for the settings file
 var params = getParametersByName(document.location.href);
 var myLocation = document.location
 var protocol = location.protocol;
 var host = location.host;
-var pathname = location.pathname;
+var pathname = getPathName(location.pathname);
 var settingsFile = protocol + "//" + host + pathname + "settings/" + params['settings'];
 console.log(settingsFile);
 

@@ -95,6 +95,7 @@ GameState.prototype = {
         this.popSound.play();
         var x = sprite.x;
         var y = sprite.y;
+        sprite.destroy();
         var pop = this.add.sprite(x, y, 'popImage');
         pop.scale.setTo(0.5, 0.5);
         pop.anchor.setTo(0.5, 0.5);
@@ -105,16 +106,23 @@ GameState.prototype = {
         var reward = game.add.image(x, y, 'rewardImage');
         reward.anchor.setTo(0.5, 0.5);
         reward.alpha = 0;
-        game.add.tween(reward).to( 
+        var tween = game.add.tween(reward).to( 
                 {x: this.rewardImageX, y: this.rewardImageY, alpha : 1}, 4000, null, 
                 true, settings.popLifespan + 1000);
+
+        var currentScore = this.score;
+        tween.onComplete.add(function() { this.checkIfPlayerWon(currentScore);}, this);
+
         this.rewardImageX += this.rewardImageStep;
 
-        if (this.score == settings.goal) {
+    },
+
+    /* Have to pass in the score to avoid race conditions */
+    checkIfPlayerWon: function(score) {
+        if (score == settings.goal) {
             this.playerWon();
         }
-
-        sprite.destroy();
+        
     },
 
     playerWon: function() {

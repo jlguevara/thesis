@@ -14,7 +14,11 @@ if not os.path.exists(settingsFolder):
 # use the folders in the images folder to figure out what assets are available
 imagesFolder = cwd + "/images"
 for currentGame in os.listdir(imagesFolder):
+
     gameImagesFolder = imagesFolder + "/" + currentGame
+    # check that we are in a folder 
+    if not os.path.isdir(gameImagesFolder):
+        continue
 
     settings = {}
     settings['assetsDirectory'] = currentGame
@@ -29,6 +33,12 @@ for currentGame in os.listdir(imagesFolder):
             settings['popLifeSpan'] = 800
         elif image == 'background.png':
             settings['background'] = imageName
+        elif image == 'backbutton.png':
+            settings['backButton'] = imageName
+        elif image == 'playbutton.png':
+            settings['playButton'] = imageName
+        elif image == 'reward.png':
+            settings['rewardImage'] = imageName
         else:
             images.append(imageName)
 
