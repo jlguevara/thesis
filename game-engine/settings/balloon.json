@@ -6,6 +6,7 @@
     "goal": 2, 
     "goalImage": "balloonD", 
     "goalImageProbability": 0.4, 
+    "goalSound": "balloonD",
     "images": [
         "balloonA", 
         "balloonB", 

@@ -110,7 +110,8 @@ GameState.prototype = {
                 {x: this.rewardImageX, y: this.rewardImageY, alpha : 1}, 4000, null, 
                 true, settings.popLifespan + 1000);
 
-        tween.onComplete.add(function() { this.checkIfPlayerWon(this.score);}, this);
+        var currentScore = this.score;
+        tween.onComplete.add(function() { this.checkIfPlayerWon(currentScore);}, this);
 
         this.rewardImageX += this.rewardImageStep;
 
@@ -156,7 +157,6 @@ GameState.prototype = {
 
 };
 
-var game = new Phaser.Game(950, 525, Phaser.AUTO);
 
 game.state.add('GameState', GameState);
-game.state.start('GameState');
+
