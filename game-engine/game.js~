@@ -159,4 +159,3 @@ GameState.prototype = {
 
 
 game.state.add('GameState', GameState);
-

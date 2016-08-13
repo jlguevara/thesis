@@ -1,15 +1,21 @@
 {
     "assetsDirectory": "balloon", 
     "background": "background", 
+    "backButton": "backbutton",
     "delay": 1500, 
     "goal": 5, 
+    "goalImage": "star",
+    "goalImageProbability": 0.4,
+    "goalSound": "balloonD",
+    "playButton": "playbutton",
     "playerImage": "balloonA", 
+    "rewardImage": "reward",
     "images": [
         "pentagon", 
-        "star", 
         "trapezoid", 
         "triangle"
     ], 
+    "lives": 3,
     "popImage": "pop", 
     "popLifeSpan": 800, 
     "popSound": "pop", 
