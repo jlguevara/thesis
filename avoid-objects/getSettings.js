@@ -28,7 +28,6 @@ var protocol = location.protocol;
 var host = location.host;
 var pathname = location.pathname;
 var settingsFile = protocol + "//" + host + pathname + "settings/" + params['settings'];
-console.log(settingsFile);
 
 // variable that will hold settings object
 var settings = null;
@@ -36,7 +35,6 @@ var settings = null;
 var request = new XMLHttpRequest();
 request.onreadystatechange = function() {
     if (request.readyState == XMLHttpRequest.DONE && request.status == 200) {
-        console.log(request.responseText);
         settings = JSON.parse(request.responseText);
     }
 };

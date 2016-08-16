@@ -17,6 +17,7 @@ GameState.prototype = {
         game.load.image('popImage', imagePath + settings.popImage + '.png');
         game.load.image('rewardImage', imagePath + settings.rewardImage + '.png');
         game.load.image('goalImage', imagePath + settings.goalImage + '.png');
+        game.load.image('lifeImage', imagePath + settings.lifeImage + '.png');
         game.load.image('backButton', imagePath + settings.backButton + '.png');
         game.load.image('playButton', imagePath + settings.playButton + '.png');
 
@@ -24,17 +25,13 @@ GameState.prototype = {
         var soundsPath = 'sounds/' + settings.assetsDirectory + '/';
         game.load.audio('popSound', soundsPath + settings.popSound + '.mp3');
         game.load.audio('winSound', soundsPath + settings.winSound + '.mp3');
+        game.load.audio('gameOverSound', soundsPath + settings.gameOverSound + '.mp3');
     },
 
     create: function() {
         var background = game.add.image(0,0, 'background');
         background.width = game.width;
         background.height = game.height;
-
-        this.lives = settings.lives;
-        this.livesLabel = game.add.text(game.width - 50, 10, "Lives: " + this.lives,
-                {font: '30px KidsClub' , fill: '#fff', align: 'center'}); 
-        this.livesLabel.anchor.setTo(0.5, 0.5);
 
         this.setupPlayer();
 
@@ -49,6 +46,23 @@ GameState.prototype = {
         this.rewardImageX = game.cache.getImage('rewardImage').width / 2; 
         this.rewardImageY = game.cache.getImage('rewardImage').height / 2; 
 
+        this.setupLives();
+
+    },
+
+    setupLives: function() {
+        this.lives = settings.lives;
+        this.livesArray = []
+
+        var step = game.cache.getImage('lifeImage').width; 
+        var x = game.width - game.cache.getImage('lifeImage').width / 2; 
+        var y = game.cache.getImage('lifeImage').height / 2; 
+
+        for (var i = 0; i < this.lives; i++) {
+            var lifeSprite = game.add.sprite(x - step * i, y, 'lifeImage');
+            lifeSprite.anchor.setTo(0.5, 0.5);
+            this.livesArray.push(lifeSprite);
+        }
     },
 
     setupPlayer: function() {
@@ -61,7 +75,7 @@ GameState.prototype = {
     },
 
     update: function() {
-        if (this.score == settings.goal) {
+        if (this.score == settings.goal || this.lives == 0) {
             return;
         }
 
@@ -110,9 +124,12 @@ GameState.prototype = {
 
         fallingObject.kill();
 
+        // we caught the goal image
         if (fallingObject.key == 'goalImage') {
             this.score++;
 
+            var x = player.x;
+            var y = player.y;
             var reward = game.add.image(x, y, 'rewardImage');
             reward.anchor.setTo(0.5, 0.5);
             reward.alpha = 0;
@@ -126,7 +143,7 @@ GameState.prototype = {
         }
         else {
             this.lives--;
-            this.livesLabel.text = this.lives;
+            this.livesArray[this.lives].kill();
             this.player.alpha = 0;
             var x = this.player.x;
             var y = this.player.y;
@@ -135,24 +152,31 @@ GameState.prototype = {
             pop.anchor.setTo(0.5, 0.5);
             pop.lifespan = settings.popLifeSpan;
 
-            x = game.width / 2;
-            y = game.height / 2;
-            game.add.tween(player).to( {x: x, y: y, alpha : 1}, 4000, null, true, 
-                    settings.popLifespan + 1000)
+            if (this.lives > 0) {
+                x = game.width / 2;
+                y = game.height / 2;
+                game.add.tween(player).to( {x: x, y: y, alpha : 1}, 4000, null, true, 
+                        settings.popLifespan + 1000)
+            }
+            else {
+                var gameOverSound = this.add.audio('gameOverSound');
+                gameOverSound.play();
+                this.displayEndMenu();
+            }
         }
     },
 
     /* Have to pass in the score to avoid race conditions */
     checkIfPlayerWon: function(score) {
         if (score == settings.goal) {
-            this.playerWon();
+            var winSound = this.add.audio('winSound');
+            winSound.play();
+            this.displayEndMenu();
         }
         
     },
 
-    playerWon: function() {
-        var winSound = this.add.audio('winSound');
-        winSound.play();
+    displayEndMenu: function() {
 
         var backButton = 
             game.add.image(0.35 * game.width,0.6 * game.height, 'backButton');

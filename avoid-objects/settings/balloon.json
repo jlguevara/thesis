@@ -1,25 +1,24 @@
 {
     "assetsDirectory": "balloon", 
+    "backButton": "backbutton", 
     "background": "background", 
-    "backButton": "backbutton",
     "delay": 1500, 
+    "gameOverSound": "gameover", 
     "goal": 5, 
-    "goalImage": "star",
-    "goalImageProbability": 0.4,
-    "goalSound": "balloonD",
-    "playButton": "playbutton",
-    "playerImage": "balloonA", 
-    "rewardImage": "reward",
+    "goalImage": "star", 
+    "goalImageProbability": 0.4, 
+    "goalSound": "star", 
     "images": [
         "pentagon", 
-        "trapezoid", 
-        "triangle"
+        "triangle", 
+        "trapezoid"
     ], 
-    "lives": 3,
+    "lifeImage": "life", 
+    "lives": 3, 
+    "playButton": "playbutton", 
+    "playerImage": "player", 
     "popImage": "pop", 
     "popLifeSpan": 800, 
-    "popSound": "pop", 
-    "velocity": 100, 
-    "winMessage": "You win!", 
-    "winSound": "win"
+    "rewardImage": "reward", 
+    "velocity": 100
 }
