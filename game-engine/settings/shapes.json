@@ -1,25 +1,27 @@
 {
     "assetsDirectory": "shapes", 
     "background": "background", 
+    "backButton": "backbutton",
     "delay": 1500, 
     "goal": 5, 
-    "goalImage": "trapezoid", 
+    "goalImage": "triangle", 
+    "goalSound": "triangle",
     "goalImageProbability": 0.4, 
     "images": [
         "arrow", 
-        "circle", 
         "flippedSquare", 
         "pentagon", 
         "rectangle", 
         "square", 
         "star", 
         "trapezoid", 
-        "triangle"
+        "circle"
     ], 
+    "playButton": "playbutton",
     "popImage": "pop", 
     "popLifeSpan": 800, 
     "popSound": "pop", 
+    "rewardImage": "reward",
     "velocity": -100, 
-    "winMessage": "You win!", 
     "winSound": "win"
 }

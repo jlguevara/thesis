@@ -193,7 +193,7 @@ GameState.prototype = {
 
     backButtonClicked: function() {
         console.log(location);
-        location = ".";
+        location = "..";
     },
 
     playButtonClicked: function() {

@@ -13,6 +13,8 @@ GameState.prototype = {
             game.load.image(image, imagePath + image + '.png');
         }
 
+        game.load.image('goalImage', imagePath + settings.goalImage + '.png');
+        game.load.image('rewardImage', imagePath + settings.rewardImage + '.png');
         game.load.image('popImage', imagePath + settings.popImage + '.png');
         game.load.image('rewardImage', imagePath + settings.rewardImage + '.png');
         game.load.image('backButton', imagePath + settings.backButton + '.png');
@@ -58,7 +60,7 @@ GameState.prototype = {
 
             var imageToUse;
             if (Math.random() <= settings.goalImageProbability) {      
-                imageToUse = settings.goalImage;
+                imageToUse = 'goalImage';
             }
             else {
                 var index = Math.floor(Math.random() * settings.images.length);
@@ -86,7 +88,7 @@ GameState.prototype = {
     },
 
     spriteClicked: function(sprite, event) {
-        if (sprite.key != settings.goalImage)
+        if (sprite.key != 'goalImage')
             return;
 
         if (this.score == settings.goal) 
@@ -148,7 +150,7 @@ GameState.prototype = {
 
     backButtonClicked: function() {
         console.log(location);
-        location = ".";
+        location = "..";
     },
 
     playButtonClicked: function() {

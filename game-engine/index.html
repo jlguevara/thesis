@@ -1,12 +1,31 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8" />
-        <title>Games</title>
+        <title>Balloon Game</title>
+        <style>
+            @font-face {
+                font-family: 'KidsClub';
+                src: url('fonts/kids-club/Kids-Club.ttf') format('truetype');
+            }
+
+            body {
+                font-family: 'KidsClub';
+            }
+
+            #fontLoader {
+                position:   absolute;
+                left:   -1000px;
+            }
+        </style>
+        <script src="getSettings.js"></script>
+        <script src="phaser.js"></script>
+        <script src="gameIntro.js"></script>
+        <script src="game.js"></script>
     </head>
     <body>
-<a href="engine.html?settings=balloon.json">balloon</a>
-<a href="engine.html?settings=shapes.json">shapes</a>
-<a href="engine.html?settings=test.json">test</a>
-</body>
+        <div id=fontLoader>
+            Hack to load custome fonts
+        </div>
+    </body>
 </html>
