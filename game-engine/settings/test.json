@@ -3,8 +3,8 @@
     "background": "background", 
     "delay": 1500, 
     "goal": 5, 
-    "goalImage": "balloonD", 
-    "goalImageProbability": 0.4, 
+    "goalImage": "balloonA", 
+    "goalImageProbability": 0.40000000000000002, 
     "images": [
         "balloonA", 
         "balloonB", 
