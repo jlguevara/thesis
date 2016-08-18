@@ -18,7 +18,9 @@
     "playButton": "playbutton", 
     "playerImage": "player", 
     "popImage": "pop", 
+    "popSound": "pop",
     "popLifeSpan": 800, 
     "rewardImage": "reward", 
+    "winSound": "win",
     "velocity": 100
 }
