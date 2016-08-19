@@ -1,0 +1,26 @@
+{
+    "assetsDirectory": "ship", 
+    "backButton": "backbutton", 
+    "background": "background", 
+    "delay": 1500, 
+    "gameOverSound": "gameover", 
+    "goal": 5, 
+    "goalImage": "star", 
+    "goalImageProbability": 0.4, 
+    "goalSound": "star", 
+    "images": [
+        "asteroid1",
+        "asteroid2",
+        "asteroid3"
+    ], 
+    "lifeImage": "life", 
+    "lives": 3, 
+    "playButton": "playbutton", 
+    "playerImage": "ship", 
+    "popImage": "pop", 
+    "popSound": "pop",
+    "popLifeSpan": 800, 
+    "rewardImage": "reward", 
+    "winSound": "win",
+    "velocity": 100
+}
