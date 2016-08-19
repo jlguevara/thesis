@@ -1,14 +1,13 @@
 {
-    "assetsDirectory": "balloon", 
+    "assetsDirectory": "balloon1", 
     "backButton": "backbutton", 
     "background": "background", 
     "delay": 1500, 
     "goal": 2, 
-    "goalImage": "balloonD", 
+    "goalImage": "balloonA", 
     "goalImageProbability": 0.4, 
-    "goalSound": "balloonD",
+    "goalSound": "balloonA",
     "images": [
-        "balloonA", 
         "balloonB", 
         "balloonC", 
         "balloonD", 
