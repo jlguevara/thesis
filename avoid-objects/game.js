@@ -20,6 +20,7 @@ GameState.prototype = {
         game.load.image('lifeImage', imagePath + settings.lifeImage + '.png');
         game.load.image('backButton', imagePath + settings.backButton + '.png');
         game.load.image('playButton', imagePath + settings.playButton + '.png');
+        game.load.image('playAgainButton', imagePath + settings.playAgainButton + '.png');
 
         // load sounds
         var soundsPath = 'sounds/' + settings.assetsDirectory + '/';
@@ -185,7 +186,7 @@ GameState.prototype = {
         backButton.events.onInputDown.add(this.backButtonClicked, this);
 
         var playButton = 
-            game.add.image(0.65 * game.width,0.6 * game.height, 'playButton');
+            game.add.image(0.65 * game.width,0.6 * game.height, 'playAgainButton');
         playButton.anchor.setTo(0.5, 0.5);
         playButton.inputEnabled = true;
         playButton.events.onInputDown.add(this.playButtonClicked, this);

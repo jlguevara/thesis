@@ -1,0 +1,25 @@
+{
+    "assetsDirectory": "balloonE", 
+    "backButton": "backbutton", 
+    "background": "background", 
+    "delay": 1500, 
+    "goal": 6, 
+    "goalImage": "balloonE", 
+    "goalImageProbability": 0.4, 
+    "goalSound": "balloonE",
+    "images": [
+        "balloonA", 
+        "balloonB", 
+        "balloonC", 
+        "balloonD" 
+    ], 
+    "playAgainButton": "playAgainButton", 
+    "playButton": "playbutton", 
+    "popImage": "pop", 
+    "popLifeSpan": 800, 
+    "popSound": "pop", 
+    "rewardImage": "reward", 
+    "velocity": -100, 
+    "winMessage": "You win!", 
+    "winSound": "win"
+}

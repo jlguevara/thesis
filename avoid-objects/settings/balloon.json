@@ -15,6 +15,7 @@
     ], 
     "lifeImage": "life", 
     "lives": 3, 
+    "playAgainButton": "playAgainButton", 
     "playButton": "playbutton", 
     "playerImage": "player", 
     "popImage": "pop", 
