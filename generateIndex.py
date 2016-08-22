@@ -1,10 +1,32 @@
 import os
+import json
+
+def getIconSrc(gameEngine, gameName):
+    path = gameEngine + "/settings/" + gameName + ".json"
+    f = open(path)
+    settings = json.loads(f.read())
+    imagesDir = gameEngine + "/images/" + gameName + "/" 
+
+    if gameEngine == 'avoid-objects':
+        iconSrc = imagesDir + settings['playerImage'] + ".png" 
+    elif gameEngine == 'pop-objects':
+        iconSrc = imagesDir + settings['goalImage'] + ".png"
+
+    return iconSrc
+
 
 header = """<!doctype html>
 <html>
     <head>
         <meta charset="utf-8" />
         <title>Games</title>
+        <style>
+        /*
+            img {   width: 120px;
+                    height: 120px;
+            }
+        */
+        </style>
     </head>
     """
 
@@ -21,13 +43,16 @@ for engine in os.listdir(cwd):
     imagesDir = engine + "/images"
 
     for dirName in os.listdir(imagesDir):
-        if not os.path.isdir(imagesDir + "/" + dirName):
+        gameImages = imagesDir + "/" + dirName
+        if not os.path.isdir(gameImages):
             continue
 
         href = engine + "/?settings=" + dirName + ".json" 
+        iconSrc = getIconSrc(engine, dirName)
 
-        link = '<p><a href="' + href + '">' + dirName + '</a></p>'
-        body += link + "\n"
+        entry = '<p><a href="' + href + '">'  
+        entry += '<img src="' + iconSrc + '" />' + dirName + '</a></p>'
+        body += entry + "\n"
 
 body += "</body>\n"
 
