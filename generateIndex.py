@@ -3,6 +3,7 @@ import json
 
 def getIconSrc(gameEngine, gameName):
     path = gameEngine + "/settings/" + gameName + ".json"
+    print path
     f = open(path)
     settings = json.loads(f.read())
     imagesDir = gameEngine + "/images/" + gameName + "/" 

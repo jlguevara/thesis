@@ -1,0 +1,27 @@
+{
+    "assetsDirectory": "bugs", 
+    "backButton": "backbutton", 
+    "background": "background", 
+    "delay": 1500, 
+    "gameOverSound": "gameover", 
+    "goal": 3, 
+    "goalImage": "apple_r", 
+    "goalImageProbability": 0.4, 
+    "goalSound": "directions", 
+    "images": [
+        "apple_g",
+        "apple_y",
+        "asteroid1"
+    ], 
+    "lifeImage": "life", 
+    "lives": 3, 
+    "playAgainButton": "playAgainButton", 
+    "playButton": "playbutton", 
+    "playerImage": "bug", 
+    "popImage": "pop", 
+    "popSound": "pop",
+    "popLifeSpan": 800, 
+    "rewardImage": "reward", 
+    "winSound": "win",
+    "velocity": 100
+}
