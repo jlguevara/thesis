@@ -1,5 +1,8 @@
 GameState = function(game) {
     // new stuff
+    this.LETTERS = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", 
+                    "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+    this.NUMBERS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 };
 
 GameState.prototype = {
@@ -55,21 +58,8 @@ GameState.prototype = {
             var x = Math.floor(Math.random() * (game.width - balloonWidth) + 
                     balloonWidth / 2) 
             */
-            var x = Math.floor(Math.random() * game.width);
-            var y = game.height;
 
-            var imageToUse;
-            if (Math.random() <= settings.goalImageProbability) {      
-                imageToUse = 'goalImage';
-            }
-            else {
-                var index = Math.floor(Math.random() * settings.images.length);
-                imageToUse = settings.images[index];
-            }
-
-            var sprite = game.add.sprite(x, y, imageToUse);
-            sprite.anchor.setTo(0.5, 0.5);
-            //balloon.scale.setTo(0.25, 0.25);
+            var sprite = this.generateSprite(); 
 
             this.physics.enable(sprite, Phaser.Physics.ARCADE);
             sprite.body.velocity.y = settings.velocity;
@@ -81,6 +71,62 @@ GameState.prototype = {
             sprite.outOfBoundsKill = true;
         }
 
+    },
+
+    generateSprite: function() {
+        var x = Math.floor(Math.random() * game.width);
+        var y = game.height;
+
+        if (settings.goalText) {
+            var sprite = game.add.sprite(x, y, 'goalImage');
+            sprite.anchor.setTo(0.5, 0.5);
+
+            var context;
+            switch (settings.context) {
+                case "letters":
+                    context = this.LETTERS;
+                    break;
+                case "numbers":
+                    context = this.NUMBERS;
+                    break;
+                default:
+                    context = settings.context;
+            } 
+
+            // remove the goal from the context to simplify the probabily calculation
+            var index = context.indexOf(settings.goalText);
+            if (index != -1)
+                context.splice(index, 1);
+            
+            var textToUse;
+            if (Math.random() <= settings.goalImageProbability) {
+                textToUse = settings.goalText;
+            }
+            else {
+                var index = Math.floor(Math.random() * context.length);
+                textToUse = context[index];
+            }
+
+            var textNode = this.add.text(0, -10, textToUse,
+                    {font: '300px Helvetica' , fill: '#fff', align: 'center'}); 
+            textNode.anchor.setTo(0.5, 0.5);
+            sprite.addChild(textNode);
+
+            return sprite;
+        }
+        else {
+            var imageToUse;
+            if (Math.random() <= settings.goalImageProbability) {      
+                imageToUse = 'goalImage';
+            }
+            else {
+                var index = Math.floor(Math.random() * settings.images.length);
+                imageToUse = settings.images[index];
+            }
+            var sprite = game.add.sprite(x, y, imageToUse);
+            sprite.anchor.setTo(0.5, 0.5);
+            return sprite;
+        }
     },
 
     render: function() {

@@ -22,11 +22,13 @@ header = """<!doctype html>
         <meta charset="utf-8" />
         <title>Games</title>
         <style>
-        /*
-            img {   width: 120px;
-                    height: 120px;
+            .gameType {
+                clear: both;
             }
-        */
+
+            .game {   
+                    float: left;
+            }
         </style>
     </head>
     """
@@ -39,7 +41,7 @@ for engine in os.listdir(cwd):
     if not os.path.isdir(engine) or engine[0] == '.':
         continue
 
-    body += "<h2>" + engine + "</h2>\n"
+    body += '<div class="gameType">' + engine + "</div>\n"
 
     imagesDir = engine + "/images"
 
@@ -51,8 +53,9 @@ for engine in os.listdir(cwd):
         href = engine + "/?settings=" + dirName + ".json" 
         iconSrc = getIconSrc(engine, dirName)
 
-        entry = '<p><a href="' + href + '">'  
-        entry += '<img src="' + iconSrc + '" />' + dirName + '</a></p>'
+        entry = '<div class="game">'
+        entry += '<img src="' + iconSrc + '" />'
+        entry += '<div><a href="' + href + '">' + dirName + '</a></div></div>'  
         body += entry + "\n"
 
 body += "</body>\n"
