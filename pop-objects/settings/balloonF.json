@@ -6,7 +6,7 @@
     "goal": 3, 
     "goalImage": "balloon", 
     "goalImageProbability": 0.4, 
-    "goalSound": "balloonE",
+    "goalSound": "balloonF",
     "goalText" : "F",
     "context" : "letters",
     "images": [
