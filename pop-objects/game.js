@@ -108,7 +108,7 @@ GameState.prototype = {
             }
 
             var textNode = this.add.text(0, -10, textToUse,
-                    {font: '300px Helvetica' , fill: '#fff', align: 'center'}); 
+                    {font: '100px Helvetica' , fill: '#fff', align: 'center'}); 
             textNode.anchor.setTo(0.5, 0.5);
             sprite.addChild(textNode);
 
