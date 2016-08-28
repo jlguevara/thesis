@@ -27,6 +27,8 @@ GameState.prototype = {
         var soundsPath = 'sounds/' + settings.assetsDirectory + '/';
         game.load.audio('popSound', soundsPath + settings.popSound + '.mp3');
         game.load.audio('winSound', soundsPath + settings.winSound + '.mp3');
+        game.load.audio('wrongChoiceSound', 
+                soundsPath + settings.wrongChoiceSound + '.mp3');
     },
 
     create: function() {
@@ -37,6 +39,7 @@ GameState.prototype = {
         this.nextThingAt = 0;
 
         this.popSound = this.add.audio('popSound');
+        this.wrongSound = this.add.audio('wrongChoiceSound');
 
         this.score = 0;
 
@@ -135,7 +138,7 @@ GameState.prototype = {
 
     spriteClicked: function(sprite, event) {
         if (sprite.key != 'goalImage')
-            return;
+            this.wrongSound.play();
 
         if (this.score == settings.goal) 
             return;

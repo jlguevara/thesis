@@ -4,11 +4,9 @@
     "background": "background", 
     "delay": 1500, 
     "goal": 3, 
-    "goalImage": "balloon", 
+    "goalImage": "balloonF", 
     "goalImageProbability": 0.4, 
     "goalSound": "balloonF",
-    "goalText" : "F",
-    "context" : "letters",
     "images": [
         "balloonA", 
         "balloonB", 
@@ -23,5 +21,6 @@
     "rewardImage": "reward", 
     "velocity": -100, 
     "winMessage": "You win!", 
+    "wrongChoiceSound": "wrong",
     "winSound": "win"
 }

@@ -24,5 +24,6 @@
     "popSound": "pop", 
     "rewardImage": "reward",
     "velocity": -100, 
+    "wrongChoiceSound": "wrong",
     "winSound": "win"
 }
