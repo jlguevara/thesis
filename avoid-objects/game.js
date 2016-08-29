@@ -26,6 +26,7 @@ GameState.prototype = {
         var soundsPath = 'sounds/' + settings.assetsDirectory + '/';
         game.load.audio('popSound', soundsPath + settings.popSound + '.mp3');
         game.load.audio('winSound', soundsPath + settings.winSound + '.mp3');
+        game.load.audio('crashSound', soundsPath + settings.crashSound + '.mp3');
         game.load.audio('gameOverSound', soundsPath + settings.gameOverSound + '.mp3');
     },
 
@@ -47,6 +48,7 @@ GameState.prototype = {
         this.rewardImageX = game.cache.getImage('rewardImage').width / 2; 
         this.rewardImageY = game.cache.getImage('rewardImage').height / 2; 
 
+        this.crashSound = this.add.audio('crashSound');
         this.setupLives();
 
     },
@@ -152,6 +154,8 @@ GameState.prototype = {
             var pop = this.add.sprite(x, y, 'popImage');
             pop.anchor.setTo(0.5, 0.5);
             pop.lifespan = settings.popLifeSpan;
+
+            this.crashSound.play();
 
             if (this.lives > 0) {
                 x = game.width / 2;

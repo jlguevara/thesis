@@ -2,6 +2,7 @@
     "assetsDirectory": "bugs", 
     "backButton": "backbutton", 
     "background": "background", 
+    "crashSound": "crash",
     "delay": 1500, 
     "gameOverSound": "gameover", 
     "goal": 3, 

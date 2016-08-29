@@ -137,8 +137,10 @@ GameState.prototype = {
     },
 
     spriteClicked: function(sprite, event) {
-        if (sprite.key != 'goalImage')
+        if (sprite.key != 'goalImage') {
             this.wrongSound.play();
+            return;
+        }
 
         if (this.score == settings.goal) 
             return;
