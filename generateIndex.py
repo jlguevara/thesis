@@ -23,6 +23,9 @@ header = """<!doctype html>
         <title>Games</title>
         <style>
             .gameType {
+                font-size: 1.5em;
+                font-weight: bold;
+                font: sans-serif;
                 clear: both;
             }
 
