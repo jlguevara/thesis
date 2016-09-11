@@ -24,8 +24,8 @@ GameState.prototype = {
 
         // load sounds
         var soundsPath = 'sounds/' + settings.assetsDirectory + '/';
-        game.load.audio('popSound', soundsPath + settings.popSound + '.mp3');
         game.load.audio('winSound', soundsPath + settings.winSound + '.mp3');
+        game.load.audio('successSound', soundsPath + settings.successSound + '.mp3');
         game.load.audio('crashSound', soundsPath + settings.crashSound + '.mp3');
         game.load.audio('gameOverSound', soundsPath + settings.gameOverSound + '.mp3');
     },
@@ -49,7 +49,15 @@ GameState.prototype = {
         this.rewardImageY = game.cache.getImage('rewardImage').height / 2; 
 
         this.crashSound = this.add.audio('crashSound');
+        this.successSound = this.add.audio('successSound');
         this.setupLives();
+
+        // use local storage to get velocity 
+        var key = location.href + "velocity";
+        var velocity = localStorage[key]
+        if (velocity) {
+            settings.velocity = velocity + settings.velocityIncrease;
+        }
 
     },
 
@@ -130,6 +138,7 @@ GameState.prototype = {
         // we caught the goal image
         if (fallingObject.key == 'goalImage') {
             this.score++;
+            this.successSound.play();
 
             var x = player.x;
             var y = player.y;
@@ -176,6 +185,11 @@ GameState.prototype = {
         if (score == settings.goal) {
             var winSound = this.add.audio('winSound');
             winSound.play();
+
+            // store velocity
+            var key = location.href + "velocity";
+            localStorage[key] = settings.velocity;
+
             this.displayEndMenu();
         }
         

@@ -5,17 +5,16 @@
     "crashSound": "crash",
     "delay": 1500, 
     "gameOverSound": "gameover", 
-    "goal": 5, 
+    "goal": 3, 
     "goalImage": "star", 
     "goalImageProbability": 0.4, 
-    "goalSound": "star", 
+    "directions": "directions", 
     "images": [
         "asteroid1",
         "asteroid2",
         "asteroid3"
     ], 
     "lifeImage": "life", 
-    "lives": 3, 
     "lives": 3, 
     "playAgainButton": "playAgainButton", 
     "playButton": "playbutton", 
@@ -24,6 +23,8 @@
     "popSound": "pop",
     "popLifeSpan": 800, 
     "rewardImage": "reward", 
+    "successSound": "success",
     "winSound": "win",
+    "velocityIncrease": 10,
     "velocity": 100
 }

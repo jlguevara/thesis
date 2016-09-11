@@ -5,10 +5,10 @@
     "crashSound": "crash",
     "delay": 1500, 
     "gameOverSound": "gameover", 
-    "goal": 3, 
+    "goal": 4, 
     "goalImage": "apple_r", 
     "goalImageProbability": 0.4, 
-    "goalSound": "directions", 
+    "directions": "directions", 
     "images": [
         "apple_g",
         "apple_y",
@@ -23,6 +23,7 @@
     "popSound": "pop",
     "popLifeSpan": 800, 
     "rewardImage": "reward", 
+    "successSound": "success",
     "winSound": "win",
     "velocity": 100
 }

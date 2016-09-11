@@ -8,10 +8,16 @@
     "goalImageProbability": 0.4, 
     "goalSound": "balloon6",
     "images": [
-        "balloonA", 
-        "balloonB", 
-        "balloonC", 
-        "balloonD" 
+        "balloon0", 
+        "balloon1", 
+        "balloon2", 
+        "balloon3", 
+        "balloon4", 
+        "balloon5", 
+        "balloon7", 
+        "balloon8", 
+        "balloon9", 
+        "balloon10"
     ], 
     "playAgainButton": "playAgainButton", 
     "playButton": "playbutton", 

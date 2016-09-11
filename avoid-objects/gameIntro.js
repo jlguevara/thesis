@@ -12,8 +12,7 @@ gameIntro.prototype = {
 
         // load sounds
         var soundsPath = 'sounds/' + settings.assetsDirectory + '/';
-        game.load.audio('goalSound', soundsPath + settings.goalSound + '.mp3');
-        game.load.audio('targetScoreSound', soundsPath + settings.goal + '.mp3');
+        game.load.audio('directions', soundsPath + settings.directions + '.mp3');
     },
 
     create: function() {
@@ -21,9 +20,8 @@ gameIntro.prototype = {
         background.width = game.width;
         background.height = game.height;
 
-        var goalSound = this.add.audio('goalSound');
-        goalSound.play();
-        goalSound.onStop.add(this.playTargetScoreSound, this);
+        var directions = this.add.audio('directions');
+        directions.play();
 
         var goalImage = game.add.image(game.width / 2, 0.3 * game.height, 'goalImage');
         goalImage.anchor.setTo(0.5, 0.5);
@@ -34,11 +32,6 @@ gameIntro.prototype = {
         playbutton.anchor.setTo(0.5, 0.5);
         playbutton.inputEnabled = true;
         playbutton.events.onInputDown.add(this.startGame, this);
-    },
-
-    playTargetScoreSound: function() {
-        var targetSound = this.add.audio('targetScoreSound');
-        targetSound.play();
     },
 
     startGame: function() {

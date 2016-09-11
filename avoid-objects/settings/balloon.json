@@ -2,12 +2,13 @@
     "assetsDirectory": "balloon", 
     "backButton": "backbutton", 
     "background": "background", 
+    "crashSound": "crash",
     "delay": 1500, 
     "gameOverSound": "gameover", 
     "goal": 5, 
     "goalImage": "star", 
     "goalImageProbability": 0.4, 
-    "goalSound": "star", 
+    "directions": "directions", 
     "images": [
         "pentagon", 
         "triangle", 
@@ -22,6 +23,7 @@
     "popSound": "pop",
     "popLifeSpan": 800, 
     "rewardImage": "reward", 
+    "successSound": "success",
     "winSound": "win",
     "velocity": 100
 }
