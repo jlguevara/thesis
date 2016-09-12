@@ -25,5 +25,6 @@
     "rewardImage": "reward", 
     "successSound": "success",
     "winSound": "win",
+    "velocityIncrease": 10,
     "velocity": 100
 }
