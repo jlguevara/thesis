@@ -41,6 +41,9 @@ request.onreadystatechange = function() {
 request.open("GET", settingsFile); 
 request.send();
 
+
+
+
 /*
 
 var headElements = document.head.children;

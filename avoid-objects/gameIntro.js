@@ -32,12 +32,30 @@ gameIntro.prototype = {
         playbutton.anchor.setTo(0.5, 0.5);
         playbutton.inputEnabled = true;
         playbutton.events.onInputDown.add(this.startGame, this);
+
+        var style = { font: "bold 32px Arial", fill: "#fff", boundsAlignH: "center", 
+                    boundsAlignV: "middle" };
+
+
+        settings.level = this.getLevel();
+        var levelTextNode = game.add.text(game.width / 2, 0.9 * game.height, 
+                "Level " + settings.level, style);
+        levelTextNode.anchor.setTo(0.5, 0.5);
     },
 
     startGame: function() {
         game.state.start("GameState");
-    }
+    },
 
+    getLevel: function() {
+        var key = location.href + "velocity";
+        var velocity = Number(localStorage[key]);
+        if (velocity) {
+            var diff = velocity - settings.velocity;
+            return 1 + diff / settings.velocityIncrease;
+        }
+        return 1;
+    }
 }
 
 var game = new Phaser.Game(950, 525, Phaser.AUTO);

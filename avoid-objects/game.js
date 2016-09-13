@@ -56,7 +56,7 @@ GameState.prototype = {
         var key = location.href + "velocity";
         var velocity = Number(localStorage[key]);
         if (velocity) {
-            settings.velocity = velocity + settings.velocityIncrease;
+            settings.velocity = velocity; 
             console.log("velocity " + settings.velocity);
         }
 
@@ -189,8 +189,9 @@ GameState.prototype = {
 
             // store velocity
             var key = location.href + "velocity";
-            localStorage[key] = settings.velocity;
-            console.log("stored " + settings.velocity);
+            var newVelocity = settings.velocity + settings.velocityIncrease;
+            localStorage[key] = newVelocity; 
+            console.log("stored " + newVelocity);
 
             this.displayEndMenu();
         }
