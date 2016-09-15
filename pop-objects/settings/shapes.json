@@ -23,7 +23,7 @@
     "popLifeSpan": 800, 
     "popSound": "pop", 
     "rewardImage": "reward",
-    "velocity": -100, 
+    "velocity": 100, 
     "wrongChoiceSound": "wrong",
     "winSound": "win"
 }

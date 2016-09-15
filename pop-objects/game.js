@@ -46,6 +46,7 @@ GameState.prototype = {
         this.rewardImageStep = 0.9 * game.cache.getImage('rewardImage').width; 
         this.rewardImageX = game.cache.getImage('rewardImage').width / 2; 
         this.rewardImageY = game.cache.getImage('rewardImage').height / 2; 
+
     },
 
     update: function() {
@@ -54,7 +55,7 @@ GameState.prototype = {
         }
 
         if (this.nextThingAt < this.time.now) {
-            this.nextThingAt += settings.delay; 
+            this.nextThingAt = this.time.now + settings.delay; 
 
             /*
             var balloonWidth = game.cache.getImage('balloon').width * 0.25;
@@ -65,7 +66,7 @@ GameState.prototype = {
             var sprite = this.generateSprite(); 
 
             this.physics.enable(sprite, Phaser.Physics.ARCADE);
-            sprite.body.velocity.y = settings.velocity;
+            sprite.body.velocity.y = -settings.currentVelocity;
 
             sprite.inputEnabled = true;
             sprite.events.onInputDown.add(this.spriteClicked, this);
@@ -198,6 +199,11 @@ GameState.prototype = {
         playButton.anchor.setTo(0.5, 0.5);
         playButton.inputEnabled = true;
         playButton.events.onInputDown.add(this.playButtonClicked, this);
+
+        var key = location.href + "velocity";
+        var velocity = settings.currentVelocity + settings.velocityIncrease;
+        localStorage[key] = velocity;
+
     },
 
     backButtonClicked: function() {

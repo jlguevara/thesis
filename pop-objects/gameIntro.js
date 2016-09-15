@@ -38,7 +38,9 @@ gameIntro.prototype = {
          var style = { font: "bold 32px Arial", fill: "#fff", boundsAlignH: "center", 
                     boundsAlignV: "middle" };
 
+        settings.currentVelocity = this.getVelocity();
         settings.level = this.getLevel();
+
         var levelTextNode = game.add.text(game.width / 2, 0.9 * game.height, 
                 "Level " + settings.level, style);
         levelTextNode.anchor.setTo(0.5, 0.5);
@@ -54,14 +56,18 @@ gameIntro.prototype = {
         game.state.start("GameState");
     },
 
-     getLevel: function() {
+     getVelocity: function() {
         var key = location.href + "velocity";
         var velocity = Number(localStorage[key]);
-        if (velocity) {
-            var diff = velocity - settings.velocity;
-            return 1 + diff / settings.velocityIncrease;
+        if (!velocity) {
+            return settings.velocity;
         }
-        return 1;
+        return velocity;
+    },
+
+     getLevel: function() {
+        var diff = settings.currentVelocity - settings.velocity;
+        return 1 + diff / settings.velocityIncrease;
     }
 }
 

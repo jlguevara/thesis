@@ -25,7 +25,7 @@
     "popLifeSpan": 800, 
     "popSound": "pop", 
     "rewardImage": "reward", 
-    "velocity": -100, 
+    "velocity": 100, 
     "winMessage": "You win!", 
     "wrongChoiceSound": "wrong",
     "winSound": "win"

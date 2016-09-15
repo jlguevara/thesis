@@ -95,7 +95,7 @@ GameState.prototype = {
                 this.player, this.enemyGroup, this.playerHit, null, this);
 
         if (this.nextThingAt < this.time.now) {
-            this.nextThingAt += settings.delay; 
+            this.nextThingAt = this.time.now + settings.delay; 
 
             var x = Math.floor(Math.random() * game.width);
             var y = 0;
