@@ -19,6 +19,7 @@
         "balloon9", 
         "balloon10" 
     ], 
+    "moves" : {"up": 50, "zigzag": 50},
     "playAgainButton": "playAgainButton", 
     "playButton": "playbutton", 
     "popImage": "pop", 

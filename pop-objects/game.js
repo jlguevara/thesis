@@ -47,6 +47,8 @@ GameState.prototype = {
         this.rewardImageX = game.cache.getImage('rewardImage').width / 2; 
         this.rewardImageY = game.cache.getImage('rewardImage').height / 2; 
 
+        // set up the mover object
+        this.mover = new Mover(game, settings.moves);
     },
 
     update: function() {
@@ -66,7 +68,10 @@ GameState.prototype = {
             var sprite = this.generateSprite(); 
 
             this.physics.enable(sprite, Phaser.Physics.ARCADE);
-            sprite.body.velocity.y = -settings.currentVelocity;
+
+            if (sprite.key != 'goalImage') {
+                sprite.body.velocity.y = -settings.currentVelocity;
+            }
 
             sprite.inputEnabled = true;
             sprite.events.onInputDown.add(this.spriteClicked, this);
@@ -129,6 +134,10 @@ GameState.prototype = {
             }
             var sprite = game.add.sprite(x, y, imageToUse);
             sprite.anchor.setTo(0.5, 0.5);
+
+            if (imageToUse == 'goalImage') {
+                this.mover.control(sprite);
+            }
             return sprite;
         }
     },
