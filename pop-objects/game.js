@@ -47,6 +47,14 @@ GameState.prototype = {
         this.rewardImageX = game.cache.getImage('rewardImage').width / 2; 
         this.rewardImageY = game.cache.getImage('rewardImage').height / 2; 
 
+        // set up level text
+         var style = { font: "bold 32px Arial", fill: "#0f0", boundsAlignH: "center", 
+                    boundsAlignV: "middle" };
+
+        var levelTextNode = game.add.text(game.width * 0.9, game.height * 0.9, 
+                "Level " + settings.level, style);
+        levelTextNode.anchor.setTo(0.5, 0.5);
+
         // set up the mover object
         this.mover = new Mover(game, settings.moves);
     },

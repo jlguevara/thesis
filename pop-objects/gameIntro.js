@@ -35,7 +35,7 @@ gameIntro.prototype = {
         playbutton.inputEnabled = true;
         playbutton.events.onInputDown.add(this.startGame, this);
 
-         var style = { font: "bold 32px Arial", fill: "#fff", boundsAlignH: "center", 
+         var style = { font: "bold 32px Arial", fill: "#0f0", boundsAlignH: "center", 
                     boundsAlignV: "middle" };
 
         settings.currentVelocity = this.getVelocity();

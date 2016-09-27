@@ -38,6 +38,10 @@ Mover.prototype.nextMove = function() {
 };
 
 Mover.prototype.control = function(sprite) {
+    // if sprite is dead, don't tween
+    if (!sprite.alive)
+        return;
+
     var move =  this.nextMove();
 
     switch (move) {
