@@ -13,13 +13,17 @@ GameState.prototype = {
 
         for (var i = 0; i < settings.images.length; i++) {
             var image = settings.images[i];
+
+            // skip first goal image
+            if (image == settings.goalImage[0]) 
+                continue;
+
             game.load.image(image, imagePath + image + '.png');
         }
 
-        game.load.image('goalImage', imagePath + settings.goalImage + '.png');
+        game.load.image('goalImage', imagePath + settings.goalImage[0] + '.png');
         game.load.image('rewardImage', imagePath + settings.rewardImage + '.png');
         game.load.image('popImage', imagePath + settings.popImage + '.png');
-        game.load.image('rewardImage', imagePath + settings.rewardImage + '.png');
         game.load.image('backButton', imagePath + settings.backButton + '.png');
         game.load.image('playAgainButton', imagePath + settings.playAgainButton + '.png');
 
@@ -43,6 +47,7 @@ GameState.prototype = {
 
         this.score = 0;
 
+        this.stars = game.add.group();
         this.rewardImageStep = 0.9 * game.cache.getImage('rewardImage').width; 
         this.rewardImageX = game.cache.getImage('rewardImage').width / 2; 
         this.rewardImageY = game.cache.getImage('rewardImage').height / 2; 
@@ -137,8 +142,11 @@ GameState.prototype = {
                 imageToUse = 'goalImage';
             }
             else {
-                var index = Math.floor(Math.random() * settings.images.length);
-                imageToUse = settings.images[index];
+                imageToUse = settings.goalImage[0];
+                while (imageToUse == settings.goalImage[0]) {
+                    var index = Math.floor(Math.random() * settings.images.length);
+                    imageToUse = settings.images[index];
+                }
             }
             var sprite = game.add.sprite(x, y, imageToUse);
             sprite.anchor.setTo(0.5, 0.5);
@@ -175,17 +183,17 @@ GameState.prototype = {
         this.score++;
 
         var reward = game.add.image(x, y, 'rewardImage');
+        this.stars.add(reward);
         reward.anchor.setTo(0.5, 0.5);
         reward.alpha = 0;
         var tween = game.add.tween(reward).to( 
                 {x: this.rewardImageX, y: this.rewardImageY, alpha : 1}, 4000, null, 
                 true, settings.popLifespan + 1000);
 
-        var currentScore = this.score;
-        tween.onComplete.add(function() { this.checkIfPlayerWon(currentScore);}, this);
-
         this.rewardImageX += this.rewardImageStep;
 
+        var currentScore = this.score;
+        tween.onComplete.add(function() { this.checkIfPlayerWon(currentScore);}, this);
     },
 
     /* Have to pass in the score to avoid race conditions */
@@ -198,11 +206,7 @@ GameState.prototype = {
 
     playerWon: function() {
         // handle win situation
-        /*
-        this.add.text(game.width / 2, game.height / 2, settings.winMessage,
-                {font: '30px KidsClub' , fill: '#fff', align: 'center'}); 
-        */
-
+        
         var winSound = this.add.audio('winSound');
         winSound.play();
 

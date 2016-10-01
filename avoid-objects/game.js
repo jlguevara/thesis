@@ -123,10 +123,7 @@ GameState.prototype = {
     },
 
     render: function() {
-        /*
-        this.game.debug.body(this.player, '#00ff00');
-        this.game.debug.spriteInfo(this.player, 32, 32);
-        */
+        this.game.debug.body(this.player);
     },
 
     playerHit: function(player, fallingObject) {

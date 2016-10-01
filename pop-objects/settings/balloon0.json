@@ -4,9 +4,9 @@
     "background": "background", 
     "delay": 1500, 
     "goal": 3, 
-    "goalImage": ["balloon0", "balloon1"] 
+    "goalImage": ["balloon0", "balloon1"], 
     "goalImageProbability": 0.4, 
-    "goalSound": ["balloon0", "balloon1"]
+    "goalSound": ["balloon0", "balloon1"],
     "images": [
         "balloon0",
         "balloon1", 
@@ -20,7 +20,7 @@
         "balloon9", 
         "balloon10" 
     ], 
-    "moves" : {"up": 90, "zigzag": 10},
+    "moves" : {"up": 20, "zigzag": 30, "floatLeft": 50},
     "playAgainButton": "playAgainButton", 
     "playButton": "playbutton", 
     "popImage": "pop", 

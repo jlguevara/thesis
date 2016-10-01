@@ -7,12 +7,12 @@ gameIntro.prototype = {
         var imagePath = 'images/' + settings.assetsDirectory + '/';
         game.load.image('background', imagePath + settings.background + '.png');
 
-        game.load.image('goalImage', imagePath + settings.goalImage + '.png');
+        game.load.image('goalImage', imagePath + settings.goalImage[0] + '.png');
         game.load.image('playButton', imagePath + settings.playButton + '.png');
 
         // load sounds
         var soundsPath = 'sounds/' + settings.assetsDirectory + '/';
-        game.load.audio('goalSound', soundsPath + settings.goalSound + '.mp3');
+        game.load.audio('goalSound', soundsPath + settings.goalSound[0] + '.mp3');
         game.load.audio('targetScoreSound', soundsPath + settings.goal + '.mp3');
     },
 

@@ -46,23 +46,42 @@ Mover.prototype.control = function(sprite) {
 
     switch (move) {
         case "up":
+            var distance = 100;
+            var moveTime = distance / settings.currentVelocity * 1000;
             var tween= this.game.add.tween(sprite).to( 
-                    {y: sprite.y - 100}, 1500, null, true, 0);
+                    {y: sprite.y - distance}, moveTime, null, true, 0);
             tween.onComplete.add(function() { this.control(sprite);}, this);
             break;
         case "zigzag":
             var oldX = sprite.x;
+            var xDistance = 150;
+            var yDistance = 100;
+            var verticalDistance = Math.sqrt(
+                    Math.pow(xDistance, 2) + Math.pow(yDistance, 2));
+            var moveTime = verticalDistance / settings.currentVelocity * 1000;
 
             var tweenA = this.game.add.tween(sprite).to( 
-                    {x: sprite.x - 100, y: sprite.y - 100}, 1500);
+                    {x: sprite.x - xDistance, y: sprite.y - yDistance}, moveTime);
             var tweenB = this.game.add.tween(sprite).to( 
-                    {x: oldX, y: sprite.y - 200}, 1500);
+                    {x: oldX, y: sprite.y - 2 * yDistance}, moveTime);
 
             tweenB.onComplete.add(function() { this.control(sprite);}, this);
 
             tweenA.chain(tweenB);
             tweenA.start();
 
+            break;
+        case "floatLeft":
+            var newX = this.game.width * 0.1; // set the x mark at 10%
+            if (sprite.x <= newX) {
+                this.control(sprite);
+                return;
+            }
+
+            var distance = sprite.x - newX;
+            var moveTime = distance / settings.currentVelocity * 1000;
+            var tween = this.game.add.tween(sprite).to({x: newX}, moveTime, null, true);
+            tween.onComplete.add(function() { this.control(sprite);}, this);
             break;
         default:
             throw new Error("move " + move + " not supported");
