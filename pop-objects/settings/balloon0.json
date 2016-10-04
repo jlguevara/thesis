@@ -4,9 +4,9 @@
     "background": "background", 
     "delay": 1500, 
     "goal": 3, 
-    "goalImage": ["balloon0", "balloon1"], 
+    "goalImage": ["balloon0", "balloon1", "balloon2"], 
     "goalImageProbability": 0.4, 
-    "goalSound": ["balloon0", "balloon1"],
+    "goalSound": ["balloon0", "balloon1", "balloon2"],
     "images": [
         "balloon0",
         "balloon1", 

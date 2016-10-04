@@ -11,17 +11,18 @@ GameState.prototype = {
         var imagePath = 'images/' + settings.assetsDirectory + '/';
         game.load.image('background', imagePath + settings.background + '.png');
 
+        // load game images
         for (var i = 0; i < settings.images.length; i++) {
             var image = settings.images[i];
-
-            // skip first goal image
-            if (image == settings.goalImage[0]) 
-                continue;
-
             game.load.image(image, imagePath + image + '.png');
         }
 
-        game.load.image('goalImage', imagePath + settings.goalImage[0] + '.png');
+        // load goal images, override any image with same name
+        for (var i = 0; i < settings.goalImage.length; i++) {
+            var image = settings.goalImage[i];
+            game.load.image(image, imagePath + image + '.png', true);
+        }
+
         game.load.image('rewardImage', imagePath + settings.rewardImage + '.png');
         game.load.image('popImage', imagePath + settings.popImage + '.png');
         game.load.image('backButton', imagePath + settings.backButton + '.png');
@@ -29,6 +30,11 @@ GameState.prototype = {
 
         // load sounds
         var soundsPath = 'sounds/' + settings.assetsDirectory + '/';
+        for (var i = 0; i < settings.goalSound.length; i++) {
+            game.load.audio(settings.goalSound[i], 
+                    soundsPath + settings.goalSound[i] + '.mp3');
+        }
+        game.load.audio('targetScoreSound', soundsPath + settings.goal + '.mp3');
         game.load.audio('popSound', soundsPath + settings.popSound + '.mp3');
         game.load.audio('winSound', soundsPath + settings.winSound + '.mp3');
         game.load.audio('wrongChoiceSound', 
@@ -46,11 +52,10 @@ GameState.prototype = {
         this.wrongSound = this.add.audio('wrongChoiceSound');
 
         this.score = 0;
+        this.goalIndex = 0; // index of the goal image
 
         this.stars = game.add.group();
-        this.rewardImageStep = 0.9 * game.cache.getImage('rewardImage').width; 
-        this.rewardImageX = game.cache.getImage('rewardImage').width / 2; 
-        this.rewardImageY = game.cache.getImage('rewardImage').height / 2; 
+        this.setupStars();
 
         // set up level text
          var style = { font: "bold 32px Arial", fill: "#0f0", boundsAlignH: "center", 
@@ -62,6 +67,14 @@ GameState.prototype = {
 
         // set up the mover object
         this.mover = new Mover(game, settings.moves);
+    },
+
+    setupStars: function() {
+        this.stars.forEach(function (s) { s.kill(); });
+
+        this.rewardImageStep = 0.9 * game.cache.getImage('rewardImage').width; 
+        this.rewardImageX = game.cache.getImage('rewardImage').width / 2; 
+        this.rewardImageY = game.cache.getImage('rewardImage').height / 2; 
     },
 
     update: function() {
@@ -82,7 +95,7 @@ GameState.prototype = {
 
             this.physics.enable(sprite, Phaser.Physics.ARCADE);
 
-            if (sprite.key != 'goalImage') {
+            if (sprite.key != settings.goalImage[this.goalIndex]) {
                 sprite.body.velocity.y = -settings.currentVelocity;
             }
 
@@ -100,7 +113,7 @@ GameState.prototype = {
         var y = game.height;
 
         if (settings.goalText) {
-            var sprite = game.add.sprite(x, y, 'goalImage');
+            var sprite = game.add.sprite(x, y, settings.goalImage[this.goalIndex]);
             sprite.anchor.setTo(0.5, 0.5);
 
             var context;
@@ -139,11 +152,11 @@ GameState.prototype = {
         else {
             var imageToUse;
             if (Math.random() <= settings.goalImageProbability) {      
-                imageToUse = 'goalImage';
+                imageToUse = settings.goalImage[this.goalIndex];
             }
             else {
-                imageToUse = settings.goalImage[0];
-                while (imageToUse == settings.goalImage[0]) {
+                imageToUse = settings.goalImage[this.goalIndex];
+                while (imageToUse == settings.goalImage[this.goalIndex]) {
                     var index = Math.floor(Math.random() * settings.images.length);
                     imageToUse = settings.images[index];
                 }
@@ -151,7 +164,7 @@ GameState.prototype = {
             var sprite = game.add.sprite(x, y, imageToUse);
             sprite.anchor.setTo(0.5, 0.5);
 
-            if (imageToUse == 'goalImage') {
+            if (imageToUse == settings.goalImage[this.goalIndex]) {
                 this.mover.control(sprite);
             }
             return sprite;
@@ -163,12 +176,13 @@ GameState.prototype = {
     },
 
     spriteClicked: function(sprite, event) {
-        if (sprite.key != 'goalImage') {
+        if (sprite.key != settings.goalImage[this.goalIndex]) {
             this.wrongSound.play();
             return;
         }
 
-        if (this.score == settings.goal) 
+        // stop player from clicking on images once level is over
+        if (this.score == settings.goal && this.goalIndex == settings.goalImage.length) 
             return;
 
         this.popSound.play();
@@ -199,14 +213,29 @@ GameState.prototype = {
     /* Have to pass in the score to avoid race conditions */
     checkIfPlayerWon: function(score) {
         if (score == settings.goal) {
-            this.playerWon();
+            if (this.goalIndex == settings.goalImage.length - 1) 
+                this.playerWon();
+            else {
+                this.moveToNextGoal();
+            }
         }
-        
+    },
+
+    moveToNextGoal: function() {
+        this.goalIndex++;
+
+        this.setupStars();
+        this.score = 0;
+
+        var goalSound = this.add.audio(settings.goalSound[this.goalIndex]);
+        goalSound.play();
+        goalSound.onStop.add(function() { this.add.audio('targetScoreSound').play(); },
+            this);
     },
 
     playerWon: function() {
         // handle win situation
-        
+       console.log('player won'); 
         var winSound = this.add.audio('winSound');
         winSound.play();
 
