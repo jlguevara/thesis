@@ -118,12 +118,18 @@ GameState.prototype = {
 
             sprite.checkWorldBounds = true;
             sprite.outOfBoundsKill = true;
+
+            // direct hit with probability
+            var prob = Math.random() * 100;
+            if (prob < settings.directHitProbability) {
+                game.physics.arcade.moveToXY(sprite, this.player.x, this.player.y);
+            } 
         }
 
     },
 
     render: function() {
-        this.game.debug.body(this.player);
+        //this.game.debug.body(this.player);
     },
 
     playerHit: function(player, fallingObject) {
@@ -131,7 +137,7 @@ GameState.prototype = {
         if (this.player.alpha < 1) 
             return;
 
-        fallingObject.kill();
+        this.enemyGroup.remove(fallingObject, true);
 
         // we caught the goal image
         if (fallingObject.key == 'goalImage') {

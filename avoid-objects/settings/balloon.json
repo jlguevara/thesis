@@ -4,6 +4,7 @@
     "background": "background", 
     "crashSound": "crash",
     "delay": 1500, 
+    "directHitProbability": 50,
     "gameOverSound": "gameover", 
     "goal": 5, 
     "goalImage": "star", 
