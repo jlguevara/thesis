@@ -6,7 +6,7 @@
     "goal": 3, 
     "goalImage": ["balloonA", "balloonB", "balloonC"], 
     "goalImageProbability": 0.4, 
-    "goalSound": ["balloonA", "balloonB", "balloonC"],
+    "goalSound": ["balloonA-spanish", "balloonB-spanish", "balloonC-spanish"],
     "images": [
         "balloonA",
         "balloonB", 
@@ -30,5 +30,5 @@
     "velocityIncrease": 10,
     "velocity": 100, 
     "wrongChoiceSound": "wrong",
-    "winSound": "win"
+    "winSound": "win-spanish"
 }
