@@ -1,5 +1,5 @@
 {
-    "assetsDirectory": "bugs", 
+    "assetsDirectory": "", 
     "backButton": "backbutton", 
     "background": "background", 
     "crashSound": "crash",
@@ -8,7 +8,7 @@
     "goal": 4, 
     "goalImage": "apple_r", 
     "goalImageProbability": 0.4, 
-    "directions": "directions", 
+    "directions": "directions-bugs", 
     "images": [
         "apple_g",
         "apple_y",

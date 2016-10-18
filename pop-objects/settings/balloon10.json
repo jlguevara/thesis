@@ -1,14 +1,14 @@
 {
-    "assetsDirectory": "balloon10", 
+    "assetsDirectory": "", 
     "backButton": "backbutton", 
     "background": "background", 
     "delay": 1500, 
     "goal": 3, 
-    "goalImage": "balloon10", 
+    "goalImage": ["balloon10", "balloon1", "balloon2"], 
     "goalImageProbability": 0.4, 
-    "goalSound": "balloon10",
+    "goalSound": ["balloon10", "balloon1", "balloon2"],
     "images": [
-        "balloon0", 
+        "balloon0",
         "balloon1", 
         "balloon2", 
         "balloon3", 
@@ -17,16 +17,18 @@
         "balloon6", 
         "balloon7", 
         "balloon8", 
-        "balloon9"
+        "balloon9", 
+        "balloon10" 
     ], 
+    "moves" : {"up": 20, "zigzag": 30, "floatLeft": 50},
     "playAgainButton": "playAgainButton", 
     "playButton": "playbutton", 
     "popImage": "pop", 
     "popLifeSpan": 800, 
     "popSound": "pop", 
     "rewardImage": "reward", 
+    "velocityIncrease": 10,
     "velocity": 100, 
-    "winMessage": "You win!", 
     "wrongChoiceSound": "wrong",
     "winSound": "win"
 }

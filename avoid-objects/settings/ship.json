@@ -1,7 +1,7 @@
 {
-    "assetsDirectory": "ship", 
+    "assetsDirectory": "", 
     "backButton": "backbutton", 
-    "background": "background", 
+    "background": "background-ship", 
     "crashSound": "crash",
     "delay": 1500, 
     "gameOverSound": "gameover", 

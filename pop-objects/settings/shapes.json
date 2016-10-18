@@ -1,11 +1,11 @@
 {
-    "assetsDirectory": "shapes", 
+    "assetsDirectory": "", 
     "background": "background", 
     "backButton": "backbutton",
     "delay": 1500, 
     "goal": 5, 
-    "goalImage": "triangle", 
-    "goalSound": "triangle",
+    "goalImage": ["triangle"], 
+    "goalSound": ["triangle"],
     "goalImageProbability": 0.4, 
     "images": [
         "arrow", 
@@ -24,6 +24,7 @@
     "popSound": "pop", 
     "rewardImage": "reward",
     "velocity": 100, 
+    "velocityIncrease": 10, 
     "wrongChoiceSound": "wrong",
     "winSound": "win"
 }

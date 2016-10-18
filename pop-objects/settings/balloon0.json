@@ -1,5 +1,5 @@
 {
-    "assetsDirectory": "balloon0", 
+    "assetsDirectory": "", 
     "backButton": "backbutton", 
     "background": "background", 
     "delay": 1500, 
@@ -29,7 +29,6 @@
     "rewardImage": "reward", 
     "velocityIncrease": 10,
     "velocity": 100, 
-    "winMessage": "You win!", 
     "wrongChoiceSound": "wrong",
     "winSound": "win"
 }

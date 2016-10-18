@@ -1,5 +1,5 @@
 {
-    "assetsDirectory": "balloon", 
+    "assetsDirectory": "", 
     "backButton": "backbutton", 
     "background": "background", 
     "crashSound": "crash",
@@ -9,7 +9,7 @@
     "goal": 5, 
     "goalImage": "star", 
     "goalImageProbability": 0.4, 
-    "directions": "directions", 
+    "directions": "directions-balloon", 
     "images": [
         "pentagon", 
         "triangle", 
